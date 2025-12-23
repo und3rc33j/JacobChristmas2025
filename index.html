@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Storybook</title>
+
+  <!--
+  ======================================================
+  STORYBOOK TEMPLATE v1
+  ------------------------------------------------------
+  SAFE TO EDIT:
+  - THEME VARIABLES (colours / font)
+  - IMAGE PATHS
+  - pages[] CONTENT
+
+  DO NOT EDIT:
+  - Layout CSS
+  - JavaScript behaviour
+  - HTML structure
+  ======================================================
+  -->
+
+  <style>
+    /* ======================================================
+       THEME ZONE – EDIT PER BOOK
+       ====================================================== */
+
+    :root{
+      /* Background */
+      --bg0:#120c0a;
+      --bg1:#1b130f;
+
+      /* Card */
+      --card: rgba(20,14,12,.88);
+      --border:rgba(255,255,255,.12);
+      --shadow: 0 12px 40px rgba(0,0,0,.55);
+
+      /* Text */
+      --text:#fbf7f2;
+      --soft:#d5c6b6;
+
+      /* Shape + font */
+      --radius:18px;
+      --font: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    /* ======================================================
+       ENGINE ZONE – DO NOT EDIT BELOW
+       ====================================================== */
+
+    html, body{
+      height:100%;
+      margin:0;
+      overflow:hidden;
+      font-family:var(--font);
+      color:var(--text);
+    }
+
+    body{
+      background:
+        radial-gradient(900px 600px at 15% 20%, rgba(255,175,120,.18), transparent 60%),
+        radial-gradient(800px 520px at 85% 75%, rgba(255,210,140,.12), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg0));
+      display:flex;
+      justify-content:center;
+      padding:14px;
+      box-sizing:border-box;
+    }
+
+    .card{
+      width:100%;
+      max-width:920px;
+      height:100%;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+      position:relative;
+    }
+
+    header{
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:13px;
+      color:var(--soft);
+      background: rgba(0,0,0,.10);
+    }
+
+    .body{
+      flex:1;
+      min-height:0;
+      display:flex;
+      flex-direction:column;
+      padding:14px 16px;
+    }
+
+    .panel{
+      flex:1;
+      min-height:0;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      overflow:hidden;
+      background: rgba(0,0,0,.18);
+      display:flex;
+      flex-direction:column;
+    }
+
+    .text{
+      flex:0 0 auto;
+      padding:16px 16px 10px 16px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      gap:10px;
+      text-align:center;
+      font-size:22px;
+      line-height:1.5;
+      letter-spacing:.2px;
+    }
+
+    .text h2{
+      margin:0;
+      font-size:26px;
+      line-height:1.2;
+    }
+
+    .text p{ margin:0; }
+
+        @media (max-width: 480px){
+  .text{
+    font-size:18px;
+    line-height:1.45;
+  }
+
+  .text h2{
+    font-size:22px;
+  }
+}
+
+    @media (max-width: 360px){
+  .text{
+    font-size:17px;
+    line-height:1.4;
+  }
+
+  .text h2{
+    font-size:20px;
+  }
+}
+
+
+    .imgWrap{
+      flex:1 1 auto;
+      min-height:0;
+      padding:12px 12px 14px 12px;
+      border-top:1px solid rgba(255,255,255,.10);
+      display:none;
+    }
+
+    .frame{
+      width:100%;
+      height:100%;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    img.storyImg{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+    }
+
+    footer{
+      display:flex;
+      justify-content:space-between;
+      padding:14px 16px;
+      border-top:1px solid var(--border);
+      background: rgba(0,0,0,.08);
+    }
+
+    button{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.2);
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:800;
+      font-size:14px;
+      cursor:pointer;
+    }
+    button:disabled{ opacity:.4; cursor:not-allowed; }
+
+    .tapZone{
+      position:absolute;
+      left:0; right:0;
+      top:56px;
+      bottom:64px;
+      display:flex;
+      z-index:5;
+    }
+    .tapHalf{ width:50%; }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <div class="tapZone">
+      <div class="tapHalf" id="tapLeft"></div>
+      <div class="tapHalf" id="tapRight"></div>
+    </div>
+
+    <header>
+      <div id="pageLabel">Page 1</div>
+      <div>Tap sides to turn pages</div>
+    </header>
+
+    <div class="body">
+      <div class="panel">
+        <div class="text" id="text"></div>
+
+        <div class="imgWrap" id="imgWrap">
+          <div class="frame">
+            <img class="storyImg" id="img" alt="Illustration" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <button id="backBtn">Back</button>
+      <button id="nextBtn">Next</button>
+    </footer>
+  </div>
+
+<script>
+  /* ======================================================
+     CONTENT ZONE – EDIT PER BOOK
+     ====================================================== */
+
+const IMG = {
+  cover:   "images/cover.png",
+  library: "images/scene-library.png",
+  watcher: "images/scene-watcher.png",
+  pendant: "images/scene-pendant.png",
+  akuma:   "images/scene-akuma.png",
+  transform:"images/scene-transform.png",
+  pages:   "images/scene-pages.png",
+  bedroom: "images/scene-bedroom.png",
+  city:    "images/scene-city.png"
+};
+
+const pages = [
+  {
+    title:true,
+    lines:[
+      "Pagebright: Eyes Open",
+      "A story about seeing clearly",
+      "Tap next to begin."
+    ],
+    img: IMG.cover
+  },
+
+  {
+    lines:[
+      "Caitlin had a habit of noticing things.",
+      "Not the sort of things that made people say “wow, you’re clever,” but the small, easily missed ones.",
+      "The pause before someone answered a question.",
+      "The way a laugh sounded a little too quick.",
+      "She noticed when the world rushed past people, leaving them trying to keep up."
+    ],
+    img:null
+  },
+
+  {
+    lines:[
+      "She liked walking home because of that. Walking meant she could notice.",
+      "The pavement outside the library was scattered with damp leaves.",
+      "The building smelled faintly of old paper and rain.",
+      "Something didn’t feel settled."
+    ],
+    img: IMG.library
+  },
+
+  {
+    lines:[
+      "A woman stood near the entrance, phone pressed to her ear.",
+      "“I know I had them,” she said, checking the same pocket again and again.",
+      "People stepped around her without looking twice.",
+      "Caitlin didn’t rush over.",
+      "She watched."
+    ],
+    img:null
+  },
+
+  {
+    lines:[
+      "The woman’s free hand never left her bag.",
+      "“Excuse me,” Caitlin said gently. “Have you checked in there?”",
+      "The woman blinked. Her keys sat right on top.",
+      "“Oh,” she laughed. “Thank you.”"
+    ],
+    img:null
+  },
+
+  {
+    lines:[
+      "Caitlin smiled and carried on walking.",
+      "She didn’t see the figure watching from across the street.",
+      "Old. Wrapped in a long coat.",
+      "Eyes sharp and thoughtful.",
+      "The figure nodded, as if a quiet decision had been made."
+    ],
+    img: IMG.watcher
+  },
+
+  {
+    lines:[
+      "That night, Caitlin found a small box waiting on her bed.",
+      "No wrapping. No note.",
+      "Inside lay a pendant, shaped like an owl’s eye.",
+      "It was warm beneath her fingers, glowing softly."
+    ],
+    img: IMG.pendant
+  },
+
+  {
+    lines:[
+      "A fluttering sound filled the room.",
+      "“Well,” said a small voice, “you took your time.”",
+      "A tiny owl hovered in front of her.",
+      "“I’m Ollu,” the owl said. “And yes, I’m real.”"
+    ],
+    img:null
+  },
+
+  {
+    lines:[
+      "Ollu explained about the Miraculouses.",
+      "About how they chose their holders.",
+      "“The Owl Miraculous looks for perception,” Ollu said.",
+      "“For patience. For people who see what others rush past.”",
+      "“You don’t see more because you’re special.”",
+      "“You’re special because you see.”"
+    ],
+    img:null
+  },
+
+  {
+    lines:[
+      "The pendant was hers now.",
+      "But there was a rule.",
+      "“Keep it secret,” Ollu said.",
+      "“Power draws attention. Attention draws trouble.”",
+      "Caitlin nodded as the weight of it settled quietly in her chest."
+    ],
+    img:null
+  },
+
+  {
+    lines:[
+      "Trouble arrived sooner than she expected.",
+      "The next afternoon, the town centre filled with noise.",
+      "Paper flew through the air.",
+      "Headlines twisted into a storm around a man at the centre.",
+      "People ran."
+    ],
+    img: IMG.akuma
+  },
+
+  {
+    lines:[
+      "Caitlin felt it before she understood it.",
+      "A pressure. Like someone shouting without being heard.",
+      "“That’s an akumatised villain,” Ollu said.",
+      "“Fear and anger twisted into power.”",
+      "“What do I do?” Caitlin asked."
+    ],
+    img:null
+  },
+
+  {
+    lines:[
+      "“You see,” Ollu replied.",
+      "Caitlin touched the pendant.",
+      "“Ollu,” she said, steadying herself.",
+      "“Eyes open!”",
+      "Light wrapped around her as feathers of gold and violet spiralled into place."
+    ],
+    img: IMG.transform
+  },
+
+  {
+    lines:[
+      "Pagebright rushed forward.",
+      "Nothing happened.",
+      "The glowing pages she expected stayed blank.",
+      "The storm grew louder.",
+      "“You’re rushing,” Ollu said gently.",
+      "“You’re trying to fix the noise, not understand it.”"
+    ],
+    img:null
+  },
+
+  {
+    lines:[
+      "Pagebright stopped.",
+      "She closed her eyes.",
+      "She breathed.",
+      "She let the noise exist without fighting it.",
+      "When she opened her eyes again, the world changed."
+    ],
+    img:null
+  },
+
+  {
+    lines:[
+      "“Oh,” Pagebright whispered.",
+      "She stepped closer, calm and quiet.",
+      "“You’re not angry because you’re wrong,” she said.",
+      "“You’re angry because no one listened.”",
+      "The pages burst into light."
+    ],
+    img: IMG.pages
+  },
+
+  {
+    lines:[
+      "The storm stilled.",
+      "The villain’s power cracked and faded.",
+      "The man sank to the ground, confused but calm.",
+      "The town grew quiet again."
+    ],
+    img:null
+  },
+
+  {
+    lines:[
+      "That evening, back in her room, Caitlin touched the pendant once more.",
+      "“Eyes closed,” she said softly.",
+      "The glow faded.",
+      "Ollu yawned and settled onto her bookshelf."
+    ],
+    img: IMG.bedroom
+  },
+
+  {
+    lines:[
+      "Caitlin lay back, staring at the ceiling.",
+      "She hadn’t saved the day by being louder or stronger.",
+      "She’d saved it by slowing down.",
+      "By seeing."
+    ],
+    img:null
+  },
+
+  {
+    lines:[
+      "Somewhere, unseen, an old watcher smiled.",
+      "The Owl Miraculous was exactly where it belonged.",
+      "THE END"
+    ],
+    img: IMG.city
+  }
+];
+
+  /* ======================================================
+     ENGINE ZONE – DO NOT EDIT BELOW
+     ====================================================== */
+
+  let idx = 0;
+  const textEl = document.getElementById("text");
+  const imgWrap = document.getElementById("imgWrap");
+  const imgEl = document.getElementById("img");
+  const pageLabel = document.getElementById("pageLabel");
+  const backBtn = document.getElementById("backBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const tapLeft = document.getElementById("tapLeft");
+  const tapRight = document.getElementById("tapRight");
+
+  function render(){
+    const p = pages[idx];
+    textEl.innerHTML = "";
+
+    if (p.title){
+      const h = document.createElement("h2");
+      h.textContent = p.lines[0];
+      textEl.appendChild(h);
+      for (let i=1;i<p.lines.length;i++){
+        const d=document.createElement("p");
+        d.textContent=p.lines[i];
+        textEl.appendChild(d);
+      }
+    } else {
+      p.lines.forEach(l=>{
+        const d=document.createElement("p");
+        d.textContent=l;
+        textEl.appendChild(d);
+      });
+    }
+
+    if (p.img){
+      imgWrap.style.display="block";
+      imgEl.src=p.img;
+    } else {
+      imgWrap.style.display="none";
+      imgEl.removeAttribute("src");
+    }
+
+    pageLabel.textContent=`Page ${idx+1} of ${pages.length}`;
+    backBtn.disabled = idx===0;
+    nextBtn.disabled = idx===pages.length-1;
+  }
+
+  function next(){ if(idx<pages.length-1){ idx++; render(); } }
+  function back(){ if(idx>0){ idx--; render(); } }
+
+  backBtn.onclick=back;
+  nextBtn.onclick=next;
+  tapLeft.onclick=back;
+  tapRight.onclick=next;
+
+  render();
+</script>
+</body>
+</html>
