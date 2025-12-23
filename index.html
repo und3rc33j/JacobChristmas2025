@@ -252,231 +252,345 @@
      CONTENT ZONE – EDIT PER BOOK
      ====================================================== */
 
+/* ======================================================
+   CONTENT ZONE – EDIT PER BOOK
+   ====================================================== */
+
 const IMG = {
-  cover:   "images/cover.png",
-  library: "images/scene-library.png",
-  watcher: "images/scene-watcher.png",
-  pendant: "images/scene-pendant.png",
-  akuma:   "images/scene-akuma.png",
-  transform:"images/scene-transform.png",
-  pages:   "images/scene-pages.png",
-  bedroom: "images/scene-bedroom.png",
-  city:    "images/scene-city.png"
+  cover:       "images/cover.png",
+  citySkyline: "images/scene-city-skyline.png",
+  upgradeDay:  "images/scene-upgrade-platform.png",
+  trackReveal: "images/scene-track-reveal.png",
+  startLine:   "images/scene-start-line.png",
+  splitTrack:  "images/scene-split-track.png",
+  hangingRail: "images/scene-hanging-rail.png",
+  rankings:    "images/scene-rankings-wall.png",
+  replay:      "images/scene-race-replay.png",
+  balcony:     "images/scene-balcony.png"
 };
 
 const pages = [
+  // Cover
   {
-    title:true,
-    lines:[
-      "Pagebright: Eyes Open",
-      "A story about seeing clearly",
-      "Tap next to begin."
-    ],
+    title: true,
+    lines: ["THE ASCENT TRIAL", "A story made just for you.", "Tap next to begin."],
     img: IMG.cover
   },
 
+  // Chapter 1
   {
-    lines:[
-      "Caitlin had a habit of noticing things.",
-      "Not the sort of things that made people say “wow, you’re clever,” but the small, easily missed ones.",
-      "The pause before someone answered a question.",
-      "The way a laugh sounded a little too quick.",
-      "She noticed when the world rushed past people, leaving them trying to keep up."
+    title: true,
+    lines: ["CHAPTER 1", "Upgrade Day"],
+    img: null
+  },
+  {
+    lines: [
+      "Upgrade Day always felt quieter than it should have.",
+      "The city made a big show of it.",
+      "But when the upgrades came through, everything went still."
     ],
-    img:null
+    img: IMG.citySkyline
+  },
+  {
+    lines: [
+      "Jacob stood on the calibration platform.",
+      "His band hummed softly, warming against his skin.",
+      "Green light."
+    ],
+    img: IMG.upgradeDay
+  },
+  {
+    lines: [
+      "Numbers scrolled across his vision.",
+      "Speed: +2.",
+      "Focus: +1.",
+      "Endurance: unchanged."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "Around him, people cheered and showed off their upgrades.",
+      "Jacob checked his results again.",
+      "Same."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "He hadn’t failed anything.",
+      "He’d done the tasks.",
+      "Followed the routes.",
+      "Helped where help was logged and tracked."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "Still, his name sat lower on the rankings wall",
+      "than people who’d skipped half the circuit.",
+      "He didn’t argue.",
+      "The numbers wouldn’t care."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "The sky flickered.",
+      "A new announcement rolled across the buildings:",
+      "THE ASCENT TRIAL",
+      "OPEN ENTRY"
+    ],
+    img: IMG.trackReveal
+  },
+  {
+    lines: [
+      "The cheering stopped.",
+      "Above the city, the race track unfolded into open air.",
+      "Winners earned permanent upgrades.",
+      "Losers earned injuries."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "Jacob’s band tightened slightly.",
+      "Recommended Entry: No.",
+      "He looked up at the track and felt something click.",
+      "Not fear.",
+      "Recognition."
+    ],
+    img: null
   },
 
+  // Chapter 2
   {
-    lines:[
-      "She liked walking home because of that. Walking meant she could notice.",
-      "The pavement outside the library was scattered with damp leaves.",
-      "The building smelled faintly of old paper and rain.",
-      "Something didn’t feel settled."
+    title: true,
+    lines: ["CHAPTER 2", "The Starting Line"],
+    img: null
+  },
+  {
+    lines: [
+      "The gates locked with a sound like teeth snapping shut.",
+      "Jacob stood at the edge of the platform.",
+      "Drones hovered nearby, broadcasting every face."
     ],
-    img: IMG.library
+    img: IMG.startLine
+  },
+  {
+    lines: [
+      "Five.",
+      "Four.",
+      "Three."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "Someone stepped forward early.",
+      "No warning.",
+      "No penalty."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "Two.",
+      "Jacob noticed a faint marking ahead.",
+      "Barely visible.",
+      "Not on the official map."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "One.",
+      "The gates vanished.",
+      "He ran."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "The first jump was clean.",
+      "The second tighter than expected.",
+      "By the third, the track split."
+    ],
+    img: IMG.splitTrack
+  },
+  {
+    lines: [
+      "One route was shorter.",
+      "Unmarked.",
+      "Someone took it without hesitation",
+      "and flew past like they’d practiced a jump",
+      "that wasn’t meant to exist."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "Jacob took the longer path.",
+      "His lungs burned as the spiral climbed higher.",
+      "Halfway up, his band flashed red:",
+      "Stamina Throttle Engaged."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "He slowed.",
+      "Above him, runners with glowing bands didn’t."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "The finish platform blurred into view.",
+      "Jacob’s foot slipped.",
+      "He grabbed the rail and hung there, heart hammering."
+    ],
+    img: IMG.hangingRail
+  },
+  {
+    lines: [
+      "He watched three people cross the line.",
+      "One of them hadn’t completed a single official challenge all year.",
+      "The crowd roared."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "Jacob pulled himself back onto the track.",
+      "Band dim.",
+      "Shaking.",
+      "He didn’t look at the rankings.",
+      "He already knew."
+    ],
+    img: null
   },
 
+  // Chapter 3
   {
-    lines:[
-      "A woman stood near the entrance, phone pressed to her ear.",
-      "“I know I had them,” she said, checking the same pocket again and again.",
-      "People stepped around her without looking twice.",
-      "Caitlin didn’t rush over.",
-      "She watched."
+    title: true,
+    lines: ["CHAPTER 3", "The Quiet Part After"],
+    img: null
+  },
+  {
+    lines: [
+      "The city didn’t slow down for the losers.",
+      "Screens replayed the winning jumps on a loop.",
+      "The crowd cheered like the outcome had always been obvious."
     ],
-    img:null
+    img: null
+  },
+  {
+    lines: [
+      "Jacob stood near the edge of the plaza",
+      "watching his name slide down the rankings wall.",
+      "No penalty.",
+      "No reward.",
+      "Just unchanged."
+    ],
+    img: IMG.rankings
+  },
+  {
+    lines: [
+      "People argued nearby.",
+      "Someone said the race was fair because the rules were public.",
+      "Jacob looked up at the track.",
+      "Public didn’t mean visible."
+    ],
+    img: null
+  },
+  {
+    lines: [
+      "His band pulsed once:",
+      "Post-Trial Status: Stable.",
+      "Stable felt like a word you used when nothing had gone wrong,",
+      "even though something clearly had."
+    ],
+    img: null
   },
 
+  // Chapter 4
   {
-    lines:[
-      "The woman’s free hand never left her bag.",
-      "“Excuse me,” Caitlin said gently. “Have you checked in there?”",
-      "The woman blinked. Her keys sat right on top.",
-      "“Oh,” she laughed. “Thank you.”"
-    ],
-    img:null
+    title: true,
+    lines: ["CHAPTER 4", "What Stays Unchanged"],
+    img: null
   },
-
   {
-    lines:[
-      "Caitlin smiled and carried on walking.",
-      "She didn’t see the figure watching from across the street.",
-      "Old. Wrapped in a long coat.",
-      "Eyes sharp and thoughtful.",
-      "The figure nodded, as if a quiet decision had been made."
+    lines: [
+      "That night, Jacob replayed the race.",
+      "Not the finish.",
+      "The middle.",
+      "The moments that didn’t sit right."
     ],
-    img: IMG.watcher
+    img: IMG.replay
   },
-
   {
-    lines:[
-      "That night, Caitlin found a small box waiting on her bed.",
-      "No wrapping. No note.",
-      "Inside lay a pendant, shaped like an owl’s eye.",
-      "It was warm beneath her fingers, glowing softly."
+    lines: [
+      "He stripped away overlays and colour grading.",
+      "The track looked rougher like this.",
+      "Seams visible.",
+      "Old welds catching the light."
     ],
-    img: IMG.pendant
+    img: null
   },
-
   {
-    lines:[
-      "A fluttering sound filled the room.",
-      "“Well,” said a small voice, “you took your time.”",
-      "A tiny owl hovered in front of her.",
-      "“I’m Ollu,” the owl said. “And yes, I’m real.”"
+    lines: [
+      "He paused where the shortcut should have been.",
+      "There was something there.",
+      "Not a route.",
+      "A gap in the map."
     ],
-    img:null
+    img: null
   },
-
   {
-    lines:[
-      "Ollu explained about the Miraculouses.",
-      "About how they chose their holders.",
-      "“The Owl Miraculous looks for perception,” Ollu said.",
-      "“For patience. For people who see what others rush past.”",
-      "“You don’t see more because you’re special.”",
-      "“You’re special because you see.”"
+    lines: [
+      "He didn’t unlock restricted data.",
+      "Didn’t chase hidden boosts.",
+      "Didn’t try to level the numbers."
     ],
-    img:null
+    img: null
   },
-
   {
-    lines:[
-      "The pendant was hers now.",
-      "But there was a rule.",
-      "“Keep it secret,” Ollu said.",
-      "“Power draws attention. Attention draws trouble.”",
-      "Caitlin nodded as the weight of it settled quietly in her chest."
+    lines: [
+      "The system wasn’t fair.",
+      "But it was predictable.",
+      "And predictability meant choice."
     ],
-    img:null
+    img: null
   },
-
   {
-    lines:[
-      "Trouble arrived sooner than she expected.",
-      "The next afternoon, the town centre filled with noise.",
-      "Paper flew through the air.",
-      "Headlines twisted into a storm around a man at the centre.",
-      "People ran."
+    lines: [
+      "The re-entry screen hovered in front of him:",
+      "THE ASCENT TRIAL – CONFIRM",
+      "Upgrade Options Available"
     ],
-    img: IMG.akuma
+    img: null
   },
-
   {
-    lines:[
-      "Caitlin felt it before she understood it.",
-      "A pressure. Like someone shouting without being heard.",
-      "“That’s an akumatised villain,” Ollu said.",
-      "“Fear and anger twisted into power.”",
-      "“What do I do?” Caitlin asked."
+    lines: [
+      "Jacob didn’t open them.",
+      "He confirmed entry anyway."
     ],
-    img:null
+    img: IMG.balcony
   },
-
   {
-    lines:[
-      "“You see,” Ollu replied.",
-      "Caitlin touched the pendant.",
-      "“Ollu,” she said, steadying herself.",
-      "“Eyes open!”",
-      "Light wrapped around her as feathers of gold and violet spiralled into place."
+    lines: [
+      "If the system was going to test him again,",
+      "it would do it without him pretending not to see the cracks.",
+      "Same race.",
+      "Same rules.",
+      "Jacob watched the track light up in the distance.",
+      "Then turned off the screen."
     ],
-    img: IMG.transform
-  },
-
-  {
-    lines:[
-      "Pagebright rushed forward.",
-      "Nothing happened.",
-      "The glowing pages she expected stayed blank.",
-      "The storm grew louder.",
-      "“You’re rushing,” Ollu said gently.",
-      "“You’re trying to fix the noise, not understand it.”"
-    ],
-    img:null
-  },
-
-  {
-    lines:[
-      "Pagebright stopped.",
-      "She closed her eyes.",
-      "She breathed.",
-      "She let the noise exist without fighting it.",
-      "When she opened her eyes again, the world changed."
-    ],
-    img:null
-  },
-
-  {
-    lines:[
-      "“Oh,” Pagebright whispered.",
-      "She stepped closer, calm and quiet.",
-      "“You’re not angry because you’re wrong,” she said.",
-      "“You’re angry because no one listened.”",
-      "The pages burst into light."
-    ],
-    img: IMG.pages
-  },
-
-  {
-    lines:[
-      "The storm stilled.",
-      "The villain’s power cracked and faded.",
-      "The man sank to the ground, confused but calm.",
-      "The town grew quiet again."
-    ],
-    img:null
-  },
-
-  {
-    lines:[
-      "That evening, back in her room, Caitlin touched the pendant once more.",
-      "“Eyes closed,” she said softly.",
-      "The glow faded.",
-      "Ollu yawned and settled onto her bookshelf."
-    ],
-    img: IMG.bedroom
-  },
-
-  {
-    lines:[
-      "Caitlin lay back, staring at the ceiling.",
-      "She hadn’t saved the day by being louder or stronger.",
-      "She’d saved it by slowing down.",
-      "By seeing."
-    ],
-    img:null
-  },
-
-  {
-    lines:[
-      "Somewhere, unseen, an old watcher smiled.",
-      "The Owl Miraculous was exactly where it belonged.",
-      "THE END"
-    ],
-    img: IMG.city
+    img: null
   }
 ];
+
 
   /* ======================================================
      ENGINE ZONE – DO NOT EDIT BELOW
